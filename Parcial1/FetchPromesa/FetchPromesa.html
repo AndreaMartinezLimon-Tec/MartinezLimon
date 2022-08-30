@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta chartset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Document</title>
+    </head>
+    <body>
+        
+        <img id="imagen" width="300px" height="300px">
+        <button id="boton">Fetch</button>
+        <script>
+            document.getElementById('boton').addEventListener('click',function() {
+            hacerPeticion();
+             });
+
+            function hacerPeticion() {
+            fetch("https://api.catboys.com/img")
+            .then(respuesta => respuesta.json())
+            .then(datos => document.getElementById('imagen').src=datos.url)
+            }
+        </script>
+    </body>
+</html>
