@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta chartset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Chuck Norris</title>
+    </head>
+    <body>
+        <form target="broma" method="GET" action="http://api.icndb.com/jokes/random">
+            <label for="labelfirstName">Nombre</label>
+            <input name="firstName" id="fis" type="text"><br>
+            <label for="labellastName">Apellido</label>
+            <input name= "lastName" id="last" type="text"><br>
+            <button type="submit" id="btnConsulta">Generar Broma</button>
+            <br>
+            <label>Broma generada:</label>
+            <br>
+            <iframe name="broma"></iframe>
+        </form>
+    </body>
+</html>

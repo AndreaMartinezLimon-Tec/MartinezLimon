@@ -18,6 +18,7 @@ Datos a tener en cuenta:
 |**_FetchPromesa_**| _Carpeta que contiene una consulta a una API publica usando el metodo fetch de Javascript._ | 
 |**_FetchAsyncAwait_**| _Carpeta que contiene una consulta a una API publica utilizando async/await._|
 |**_HTTP_**| _Investigación acerca de los métodos de las peticiones HTTP y los codigos de respuesta._ |
-|**_ChuckNorris_**| _Ejercicio en clase con petición a una API con tematica de Chuck Norris y bromas._ |
+|**_ChuckNorris_**| _Ejercicio en clase con petición a una API con tematica de Chuck Norris y bromas._|
+|**_Form_Iframe_**| _Ejercicio en clase con petición GET/POST hacia otro sitio usando < form target="" method="" action="" >._ |
 
 *Si llegó hasta aquí le ofrezco un gato gris pequeño*
