@@ -7,13 +7,13 @@ app.use(cors({origin: "http://localhost"}));
 app.use(express.text())
 app.use(express.json())
 
-app.use('/', (req,res,next) => {
-    console.log("Esta es una función Middleware")
-    next() 
-},(re,res,next)=>{
-    console.log("Segundo middleware")
-    next()
-});
+//app.use('/', (req,res,next) => {
+//    console.log("Esta es una función Middleware")
+//    next() 
+//},(re,res,next)=>{
+//    console.log("Segundo middleware")
+//    next()
+//});
 
 app.get('/', (req,res) => {
     //res.send('Servidor express');
@@ -58,5 +58,4 @@ app.use('/', (req,res) => {
 app.listen(8082, () => {
     console.log("Express escuchando en 8082");
 });
-//top 10 loggeadores de express oh yeah
 
