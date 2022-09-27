@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 var morgan = require('morgan');
+const cadenas = require('./Cadenas');
 
 var fs = require('fs');
 var path = require('path');
@@ -21,7 +22,7 @@ app.use(morgan('combined', { stream: accessLogStream }))
 app.use('/', (req,res,next) => {
     console.log("Esta es una función Middleware")
     next() 
-},(re,res,next)=>{
+},(req,res,next)=>{
     console.log("Segundo middleware")
     next()
 });
@@ -38,9 +39,14 @@ app.post('/', (req,res) => {
 
 app.post('/texto', (req,res) => {
     console.log(req.body)
-    let may = req.body.toUpperCase()
-    let sinesp = req.body.trim()
-    let longi = req.body.length
+
+    let may = cadenas.pasarMayuscula(req.body);
+    let sinesp = cadenas.quitarEspacios(req.body);
+    let longi = cadenas.obtenerLongitud(req.body);
+    //let may = req.body.toUpperCase()
+    //let sinesp = req.body.trim()
+    //let longi = req.body.length
+
     res.json(
         {mayusculas: may,
             sinespacios: sinesp,
