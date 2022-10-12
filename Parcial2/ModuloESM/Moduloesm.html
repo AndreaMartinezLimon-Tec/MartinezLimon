@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta chartset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Document</title>
+    </head>
+    <body>
+        <label for = "cadena">Cadenas:</label>
+        <input id="cadena" type="text">
+        <button id="btn">Mayusculas</button>
+        <br>
+        <br>
+        <label for = "ResultadoM">Resultado Mayusculas:</label>
+        <input id="ResultadoMay" type="text">
+        <br>
+        <br>
+        <label for = "ResultadoS">Resultado Sin espacios:</label>
+        <input id="ResultadoSin" type="text">
+
+        <br>
+        <br>
+        <label for = "ResultadoC">Resultado Combinado:</label>
+        <input id="ResultadoCom" type="text">
+
+        <script type="module">
+            //import {pasarMayuscula,quitarEspacios } from "./Modulo.js"
+            //import * as funciones from "./Modulo.js"
+            document.getElementById("btn").addEventListener("click",function(){
+
+                import("./Modulo.js")
+                .then(function(Modulo) {
+                    let cadmay = Modulo.pasarMayuscula(document.getElementById("cadena").value);
+                    document.getElementById("ResultadoMay").value=cadmay
+                })
+
+                //let cad=document.getElementById("cadena").value;
+                //let cadmay = funciones.pasarMayuscula(cad);
+                //console.log(cadmay)
+                //document.getElementById("ResultadoMay").value = cadmay;
+            });
+            document.getElementById("btn").addEventListener("click",function(){
+
+                import("./Modulo.js")
+                .then(function(Modulo) {
+                    let cadsin = Modulo.quitarEspacios(document.getElementById("cadena").value);
+                    document.getElementById("ResultadoSin").value=cadsin
+                })
+
+                //let cad=document.getElementById("cadena").value;
+                //let cadsin = funciones.quitarEspacios(cad);
+                //console.log(cadsin)
+                //document.getElementById("ResultadoSin").value = cadsin;
+            });
+            document.getElementById("btn").addEventListener("click",function(){
+
+                import("./Modulo.js")
+                .then(function(Modulo) {
+                    let cadmay = Modulo.pasarMayuscula(document.getElementById("cadena").value);
+                    let cadsin = Modulo.quitarEspacios(cadmay);
+                    document.getElementById("ResultadoCom").value=cadsin
+                })
+
+                //let cad=document.getElementById("cadena").value;
+                //let cadmay = funciones.pasarMayuscula(cad);
+                //let cadCom = funciones.quitarEspacios(cadmay);
+                //console.log(cadCom)
+                //document.getElementById("ResultadoCom").value = cadCom;
+            });
+        </script>
+    </body>
+</html>

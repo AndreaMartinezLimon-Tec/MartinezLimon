@@ -1,0 +1,11 @@
+{
+  "name": "paquete19100212",
+  "version": "1.0.0",
+  "description": "Modulo",
+  "main": "Cadenas.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Andrea Martinez",
+  "license": "ISC"
+}
