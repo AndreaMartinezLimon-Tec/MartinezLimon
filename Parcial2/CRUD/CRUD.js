@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const mysql2 = require('mysql2/promise');
 
 const pool = mysql2.createPool({
@@ -10,6 +11,8 @@ const pool = mysql2.createPool({
   });
 
 const app = express();
+
+app.use(cors({origin: "http://localhost"}));
 
 app.use(express.text())
 app.use(express.json())
