@@ -20,11 +20,14 @@ const swaggerOptions = {
     };
 
 const app = express();
-
 app.use(cors({origin: "http://localhost"}));
 app.use(express.text())
 app.use(express.json())
 
+/**
+ * Ruteador de la API
+ * @param {Express} app Aplicacion de tipo express  
+ */
 app.use("/herbolaria",ruta.router);
 
 

@@ -10,5 +10,17 @@
     "swagger": "^0.7.5",
     "swagger-jsdoc": "^6.2.5",
     "swagger-ui-express": "^4.6.0"
-  }
+  },
+  "name": "19100212-herbolaria",
+  "version": "1.0.0",
+  "description": "Proyecto final",
+  "main": "index.js",
+  "devDependencies": {
+    "mocha": "^2.5.3"
+  },
+  "scripts": {
+    "test":"node ./node_modules/mocha/bin/mocha"
+  },
+  "author": "Andrea Martinez Limon",
+  "license": "ISC"
 }
