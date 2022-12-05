@@ -175,8 +175,8 @@ router.post('/hierba', async (req,res) => {
 router.put('/:ID', async (req,res) => {
     try {
         const ID = req.params.ID;
-        const [responseBD] = await pool.execute(`UPDATE hierbas SET Nombre_comun='${req.body.Nombre_comun}',Nombre_cientifico='${req.body.Nombre_cientifico}',Ubicación='${req.body.Ubicacion}',Propagación='${req.body.Propagacion}',Mantenimiento='${req.body.Mantenimiento}',Plagas='${req.body.Plagas}',Cosecha='${req.body.Cosecha}' WHERE ID = ${ID}`);
-        res.send(`Se ha modificado el ingrediente: ${ID}`);
+        const [responseBD] = await pool.execute(`UPDATE hierbas SET Nombre_comun='${req.body.Nombre_comun}',Nombre_cientifico='${req.body.Nombre_cientifico}',Ubicación='${req.body.Ubicación}',Propagación='${req.body.Propagación}',Mantenimiento='${req.body.Mantenimiento}',Plagas='${req.body.Plagas}',Cosecha='${req.body.Cosecha}' WHERE ID = ${ID}`);
+        res.send(`Se ha modificado la hierba: ${ID}`);
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
@@ -209,7 +209,7 @@ router.delete('/:ID', async (req,res) => {
     try {
         const ID = req.params.ID;
         const [responseBD] = await pool.execute(`DELETE FROM hierbas WHERE ID=${ID}`);
-        res.send(`Se ha eliminado el ingrediente: ${ID} `);
+        res.send(`Se ha eliminado la hierba: ${ID} `);
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
