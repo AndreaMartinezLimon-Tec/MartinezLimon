@@ -68,7 +68,7 @@ describe('POST /herbolaria/hierba', () => {
     });
 });
 
-describe('PUT /herbolaria/:ID', () => {
+describe('PUT /herbolaria/actualizar/:ID', () => {
     it('Se espera que se actualice la hierba en la base de datos y se devuelva un mensaje confirmando la actualización', (done) => {
     chai
         .request(url)
@@ -84,7 +84,7 @@ describe('PUT /herbolaria/:ID', () => {
     });
 });
 
-describe('DELETE /herbolaria/:ID', () => {
+describe('DELETE /herbolaria/eliminar/:ID', () => {
     it('Elimina una hierba de la base de datos según su ID', (done) => {
     chai
         .request(url)
