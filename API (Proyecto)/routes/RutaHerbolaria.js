@@ -11,7 +11,7 @@ const pool = mysql2.createPool({
   });
 /**
  * @swagger
- * /:
+ * /herbolaria/:
  *   get:
  *     summary: Listar las hierbas.
  *     tags:
@@ -38,7 +38,7 @@ router.get('/', async (req,res) => {
 });
 /**
  * @swagger
- * /:ID:
+ * /herbolaria/:ID:
  *   get:
  *     summary: Obtener información de una hierba por ID.
  *     tags:
@@ -70,7 +70,7 @@ router.get('/:ID', async (req,res) => {
 });
 /**
  * @swagger
- * /hierba/:
+ * /herbolaria/hierba:
  *   post:
  *     tags:
  *        - Hierbas
@@ -123,7 +123,7 @@ router.post('/hierba', async (req,res) => {
 });
 /**
  * @swagger
- * /ID:
+ * /herbolaria/ID:
  *   put:
  *     summary: Actualiza una hierba.
  *     tags:
@@ -184,7 +184,7 @@ router.put('/:ID', async (req,res) => {
 
 /**
  * @swagger
- * /:ID:
+ * /herbolaria/:ID:
  *   delete:
  *     summary: Eliminar una hierba por ID.
  *     tags:
