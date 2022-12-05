@@ -13,13 +13,17 @@ const pool = mysql2.createPool({
  * @swagger
  * /:
  *   get:
- *     summary: Listar hierbas
+ *     summary: Listar las hierbas.
  *     tags:
  *        - Hierbas
- *     description: Devuelve todas las hierbas
+ *     description: Devuelve todas las hierbas en las bases de datos.
+ *     produces:
+ *       - json
  *     responses:
  *       200:
- *         description: Retorna una lista de todas las hierbas en la base dedatos.
+ *         description: Retorna una lista de todas las hierbas en la base de datos en formato JSON.
+ *         schema:
+ *           type: array
  *       500:
  *         description: Error del servidor
  */
@@ -36,20 +40,22 @@ router.get('/', async (req,res) => {
  * @swagger
  * /:ID:
  *   get:
- *     summary: Obtener información de una hierba
+ *     summary: Obtener información de una hierba por ID.
  *     tags:
  *        - Hierbas
- *     description: Obtener la informacion de un hierba especifica por medio de su ID
+ *     description: Obtener la informacion de un hierba especifica por medio de su ID.
+ *     produces:
+ *       - json
  *     responses:
  *       200:
- *         description: Retorna la informacion en formato JSON
+ *         description: Retorna la informacion en formato JSON.
  *       500:
- *         description: Error del servidor
+ *         description: Error del servidor.
  *   parameters:
  *      - name: id
  *        in: path
  *        required: true
- *        description: ID de la hierba
+ *        description: ID de la hierba.
  *        schema:
  *          type: int
  */
@@ -68,22 +74,48 @@ router.get('/:ID', async (req,res) => {
  *   post:
  *     tags:
  *        - Hierbas
- *     description: Agregar una nueva hierba
- *     summary: Agregar una nueva hierba a la base de datos enviando los parametros por body
+ *     summary: Agregar una nueva hierba a la base de datos.
+ *     produces:
+ *       - text
+ *     description: Agregar una nueva hierba a la base de datos enviando los parametros por body.
  *     responses:
  *       200:
- *         description: Mensaje confirmando que la hierba se agregó a la base de datos
+ *         description: Mensaje confirmando que la hierba se agregó a la base de datos.
  *       500:
  *         description: Error del servidor
  *     parameters:
  *        - name: Hierba
  *          in: body
- *          description: Campos de la tabla hierba
+ *          description: Campos de la tabla hierba.
  *          required: true
+ *          schema:
+ *           type: object
+ *           properties:
+ *             Nombre_comun:
+ *               type: string
+ *               description: El nombre comùn de la planta.
+ *             Nombre_cientifico:
+ *               type: string
+ *               description: El nombre cientifico de la hierba.
+ *             Ubicación:
+ *               type: string
+ *               description: La mejor ubicación para plantar la hierba.
+ *             Propagación:
+ *               type: string
+ *               description: El mètodo de prooagación de la hierba.
+ *             Mantenimiento:
+ *               type: string
+ *               description: El mantenimiento requerido por la hierba.
+ *             Plagas:
+ *               type: string
+ *               description: Las plagas potenciales que pueden afectar a la hierba.
+ *             Cosecha:
+ *               type: string
+ *               description: El mètodo para cosechar la hierba.
  */
 router.post('/hierba', async (req,res) => {
     try {
-        const [responseBD] = await pool.execute(`INSERT INTO hierbas(Nombre_comun, Nombre_cientifico, Ubicación, Propagación, Mantenimiento, Plagas, Cosecha, Imagen) VALUES ('${req.body.Nombre_comun}','${req.body.Nombre_cientifico}','${req.body.Ubicacion}','${req.body.Propagacion}','${req.body.Mantenimiento}','${req.body.Plagas}','${req.body.Cosecha}','${req.body.Imagen}')`);
+        const [responseBD] = await pool.execute(`INSERT INTO hierbas(Nombre_comun, Nombre_cientifico, Ubicación, Propagación, Mantenimiento, Plagas, Cosecha) VALUES ('${req.body.Nombre_comun}','${req.body.Nombre_cientifico}','${req.body.Ubicacion}','${req.body.Propagacion}','${req.body.Mantenimiento}','${req.body.Plagas}','${req.body.Cosecha}')`);
         res.send("Hierba añadida con exito");
     } catch (error) {
         res.status(500).json({ error: error.message });
@@ -97,36 +129,86 @@ router.post('/hierba', async (req,res) => {
  *     tags:
  *        - Hierbas
  *     description: Actualiza la información de una hierba dado su ID
+ *     produces:
+ *       - text
  *     responses:
  *       200:
- *         description: Devuelve un mensaje confirmando que se actualizó la información
+ *         description: Devuelve un mensaje confirmando que se actualizó la información.
  *       500:
- *         description: Error del servidor
+ *         description: Error del servidor.
  *     parameters:
  *        - name: id
  *          in: path
  *          required: true
- *          description: ID de la hierba
+ *          description: ID de la hierba a actualizar.
  *          schema:
  *            type: string
  *        - name: Hierba
  *          in: body
- *          description: Información de la hierba por actualizar
+ *          description: Información de la hierba por actualizar.
  *          required: true
+ *          schema:
+ *           type: object
+ *           properties:
+ *             Nombre_comun:
+ *               type: string
+ *               description: El nombre comùn de la planta.
+ *             Nombre_cientifico:
+ *               type: string
+ *               description: El nombre cientifico de la hierba.
+ *             Ubicación:
+ *               type: string
+ *               description: La mejor ubicación para plantar la hierba.
+ *             Propagación:
+ *               type: string
+ *               description: El mètodo de propagación de la hierba.
+ *             Mantenimiento:
+ *               type: string
+ *               description: El mantenimiento requerido por la hierba.
+ *             Plagas:
+ *               type: string
+ *               description: Las plagas potenciales que pueden afectar a la hierba.
+ *             Cosecha:
+ *               type: string
+ *               description: El mètodo para cosechar la hierba.
  */
 router.put('/:ID', async (req,res) => {
     try {
         const ID = req.params.ID;
-        const [responseBD] = await pool.execute(`UPDATE hierbas SET Nombre_comun='${req.body.Nombre_comun}',Nombre_cientifico='${req.body.Nombre_cientifico}',Ubicación='${req.body.Ubicacion}',Propagación='${req.body.Propagacion}',Mantenimiento='${req.body.Mantenimiento}',Plagas='${req.body.Plagas}',Cosecha='${req.body.Cosecha}',Imagen='${req.body.Imagen}' WHERE ID = ${ID}`);
+        const [responseBD] = await pool.execute(`UPDATE hierbas SET Nombre_comun='${req.body.Nombre_comun}',Nombre_cientifico='${req.body.Nombre_cientifico}',Ubicación='${req.body.Ubicacion}',Propagación='${req.body.Propagacion}',Mantenimiento='${req.body.Mantenimiento}',Plagas='${req.body.Plagas}',Cosecha='${req.body.Cosecha}' WHERE ID = ${ID}`);
         res.send(`Se ha modificado el ingrediente: ${ID}`);
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
 });
+
+/**
+ * @swagger
+ * /:ID:
+ *   delete:
+ *     summary: Eliminar una hierba por ID.
+ *     tags:
+ *        - Hierbas
+ *     description: Obtener la informacion de un hierba especifica por medio de su ID.
+ *     produces:
+ *       - text
+ *     responses:
+ *       200:
+ *         description: Retorna un mensaje confirmando la eliminación de la hierba.
+ *       500:
+ *         description: Error del servidor.
+ *   parameters:
+ *      - name: id
+ *        in: path
+ *        required: true
+ *        description: ID de la hierba a eliminar.
+ *        schema:
+ *          type: int
+ */
 router.delete('/:ID', async (req,res) => {
     try {
         const ID = req.params.ID;
-        const [responseBD] = await pool.execute(`DELETE FROM ingrediente WHERE id_Ingrediente=${ID}`);
+        const [responseBD] = await pool.execute(`DELETE FROM hierbas WHERE ID=${ID}`);
         res.send(`Se ha eliminado el ingrediente: ${ID} `);
     } catch (error) {
         res.status(500).json({ error: error.message });
