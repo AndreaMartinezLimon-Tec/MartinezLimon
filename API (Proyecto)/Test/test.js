@@ -16,8 +16,8 @@ describe('GET /herbolaria/', () => {
           chai.expect(res.body[0]).to.have.property('ID');
           chai.expect(res.body[0]).to.have.property('Nombre_comun');
           chai.expect(res.body[0]).to.have.property('Nombre_cientifico');
-          chai.expect(res.body[0]).to.have.property('Ubicación');
-          chai.expect(res.body[0]).to.have.property('Propagación');
+          chai.expect(res.body[0]).to.have.property('Ubicacion');
+          chai.expect(res.body[0]).to.have.property('Propagacion');
           chai.expect(res.body[0]).to.have.property('Mantenimiento');
           chai.expect(res.body[0]).to.have.property('Plagas');
           chai.expect(res.body[0]).to.have.property('Cosecha');
@@ -36,8 +36,8 @@ describe('GET /herbolaria/:ID', () => {
           chai.expect(res.body[0]).to.have.property('ID');
           chai.expect(res.body[0]).to.have.property('Nombre_comun');
           chai.expect(res.body[0]).to.have.property('Nombre_cientifico');
-          chai.expect(res.body[0]).to.have.property('Ubicación');
-          chai.expect(res.body[0]).to.have.property('Propagación');
+          chai.expect(res.body[0]).to.have.property('Ubicacion');
+          chai.expect(res.body[0]).to.have.property('Propagacion');
           chai.expect(res.body[0]).to.have.property('Mantenimiento');
           chai.expect(res.body[0]).to.have.property('Plagas');
           chai.expect(res.body[0]).to.have.property('Cosecha');
@@ -54,8 +54,8 @@ describe('POST /herbolaria/hierba', () => {
         .send({
         Nombre_comun: 'Hinojo',
         Nombre_cientifico: 'Foeniculum vulgare',
-        Ubicación: 'Prefiere una tierra ligera bien drenada, ligeramente alcalina y sol directo',
-        Propagación: 'Cultive todas las variedades de hinojo sembrando las semillas en primavera.',
+        Ubicacion: 'Prefiere una tierra ligera bien drenada, ligeramente alcalina y sol directo',
+        Propagacion: 'Cultive todas las variedades de hinojo sembrando las semillas en primavera.',
         Mantenimiento: 'Corte los tallos viejos',
         Plagas: 'Ninguna relevante',
         Cosecha: 'Cortar el follaje y las flores a medida que se requiere.'
@@ -72,7 +72,7 @@ describe('PUT /herbolaria/actualizar/:ID', () => {
     it('Se espera que se actualice la hierba en la base de datos y se devuelva un mensaje confirmando la actualización', (done) => {
     chai
         .request(url)
-        .put(`/herbolaria/${ID}`)
+        .put(`/herbolaria/actualizar/${ID}`)
         .send({
         Nombre_comun: 'Rue',
         })
@@ -88,7 +88,7 @@ describe('DELETE /herbolaria/eliminar/:ID', () => {
     it('Elimina una hierba de la base de datos según su ID', (done) => {
     chai
         .request(url)
-        .delete(`/herbolaria/${ID}`)
+        .delete(`/herbolaria/eliminar/${ID}`)
         .end((err, res) => {
         expect(res).to.have.status(200);
         expect(res.text).to.deep.include(`Se ha eliminado la hierba`);
